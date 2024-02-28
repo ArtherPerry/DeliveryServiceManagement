@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:fragment="dashboard">
+<main role="main">
+    <div th:fragment="dashboard">
+        <header class="container my-3">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-dark ml-auto">
+                        Admin DashBoard
+                    </h1>
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class="container p-5 bg-info">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="#" class="btn text-dark btn-block text-dark" style="background-color: white"
+                           data-toggle="modal" data-target="#staffModel">
+                            <i class="fas fa-pencil-alt"></i> Add Staff
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#" class="btn text-dark btn-block text-dark" style="background-color: white"
+                           data-toggle="modal" data-target="#OrderModel">
+                            <i class="fas fa-pencil-alt"></i> Add Order
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#" class="btn text-dark btn-block text-dark" style="background-color: white"
+                           data-toggle="modal" data-target="#merchantModel">
+                            <i class="fas fa-pencil-alt"></i> Add Merchant
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#" class="btn text-dark btn-block text-dark" style="background-color: white"
+                           data-toggle="modal" data-target="#tshipModel">
+                            <i class="fas fa-pencil-alt"></i> Add Township
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-3">
+                        <canvas id="pickupChart" style="width: 100%; height: 300px;"></canvas>
+                    </div>
+                    <div class="col-md-3">
+                        <canvas id="deliverChart" style="width: 100%; height: 300px;"></canvas>
+                    </div>
+
+                    <div class="offset-3"></div>
+                    <div class="col-md-3 text-center">
+                        <div class="card text-white">
+                            <div class="card-body bg-info">
+                                <h3>Staff</h3>
+                                <h3 class="card-text"><i class="fas fa-folder-open"></i></h3>
+                                <a href="#" class="btn " style="background-color: white">View</a>
+                            </div>
+                        </div>
+                        <div class="card text-white mt-3">
+                            <div class="card-body bg-info">
+                                <h3>Order</h3>
+                                <h3 class="card-text"><i class="fas fa-folder-open"></i></h3>
+                                <a href="#" class="btn " style="background-color: white">View</a>
+                            </div>
+
+                        </div>
+                        <div class="card text-white mt-3 ">
+                            <div class="card-body bg-info">
+                                <h3>Merchant</h3>
+                                <h3 class="card-text"><i class="fas fa-folder-open"></i></h3>
+                                <a href="#" class="btn" style="background-color: white">View</a>
+                            </div>
+                        </div>
+                        <div class="card text-white mt-3 ">
+                            <div class="card-body bg-info">
+                                <h3>Township</h3>
+                                <h3 class="card-text"><i class="fas fa-folder-open"></i></h3>
+                                <a href="#" class="btn" style="background-color: white">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<!--staff Modal--->
+<section>
+    <div class="modal fade" id="staffModel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Add Staff</h5>
+                    <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="stname">Name</label>
+                            <input type="text" id="stname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="sphnumber">PhoneNumber</label>
+                            <input type="text" id="sphnumber" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="semail">Email</label>
+                            <input type="text" id="semail" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary btn-block">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--order Modal--->
+<section>
+    <div class="modal fade" id="OrderModel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Add Order</h5>
+                    <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" onsubmit="validateForm()" method="post">
+                        <div class="form-group">
+                            <label for="pdate">Pickup Date</label>
+                            <input type="date" class="form-control" id="pdate">
+                        </div>
+                        <div class="form-group">
+                            <label for="ddate">Deli Date</label>
+                            <input type="date" class="form-control" id="ddate">
+                        </div>
+                        <div class="form-group">
+                            <label>Select Os</label>
+                            <select class="form-control">
+                                <option value=""></option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cusname">Customer Name</label>
+                            <input type="text" class="form-control" id="cusname"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label>Select Township</label>
+                            <select class="form-control">
+                                <option value=""></option>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="phNumber">Phone Number</label>
+                            <input type="number" class="form-control" id="phNumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="delifees">Deli Fees</label>
+                            <input type="text" class="form-control" id="delifees">
+                        </div>
+                        <div class="form-group">
+                            <label for="pamount">Product Amount</label>
+                            <input type="text" class="form-control" id="pamount">
+                        </div>
+                        <div class="form-group">
+                            <label for="ospaid">Os Paid</label>
+                            <input type="text" class="form-control" id="ospaid">
+                        </div>
+                        <div class="form-group">
+                            <label for="total">Total</label>
+                            <input type="text" class="form-control" id="total">
+                        </div>
+                        <div class="form-group">
+                            <label>Select DeliStatus</label>
+                            <select class="form-control">
+                                <option value=""></option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Select Cash</label>
+                            <select class="form-control">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary btn-block">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Merchant Modal--->
+<section>
+    <div class="modal fade" id="merchantModel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Add Merchant</h5>
+                    <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="mname">Name</label>
+                            <input type="text" id="mname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mphnumber">Phone Number</label>
+                            <input type="text" id="mphnumber" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="maddress">Address</label>
+                            <input type="text" id="maddress" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary btn-block">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--TownshipModal-->
+<section>
+    <div class="modal fade" id="tshipModel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Add Township</h5>
+                    <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="tsname">Name</label>
+                            <input type="text" id="tsname" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary btn-block">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

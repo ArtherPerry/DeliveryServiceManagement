@@ -1,0 +1,33 @@
+/* Footer styles */
+.footer {
+    background-color: #343a40; /* Dark background color */
+    color: white; /* White text color */
+    padding: 20px; /* Padding */
+    position: absolute; /* Fixed position */
+    bottom: auto; /* Stick to the bottom */
+    width: 100%; /* Full width */
+    text-align: center; /* Center-align content */
+}
+
+.footer p {
+    margin-bottom: auto; /* Remove default margin of <p> element */
+}
+
+/* CSS for small screens (mobile devices) */
+@media (max-width: 767.98px) {
+    .navbar-collapse {
+        background-color: #f8f9fa; /* Change background color for mobile menu */
+    }
+
+    .nav-item {
+        margin-bottom: 5px; /* Add margin between nav items for better spacing */
+    }
+
+    .dropdown-menu {
+        position: static; /* Override Bootstrap dropdown behavior for mobile */
+    }
+
+    .dropdown-item {
+        padding-left: 20px; /* Increase padding for dropdown items */
+    }
+}
