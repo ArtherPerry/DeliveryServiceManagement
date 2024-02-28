@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{layout/adminLayout :: layout(~{::main})}" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<main role="main">
+  <div th:replace="~{fragment/dashboardbody.html::dashboard}"></div>
+</main>
 </body>
 </html>

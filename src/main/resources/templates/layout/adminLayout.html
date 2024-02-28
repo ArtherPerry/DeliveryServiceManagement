@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
-    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css"
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css"
           th:href="@{/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles.css">
@@ -12,7 +12,7 @@
 <body>
 
 <div th:insert="~{fragment/navbar.html::navbar}"></div>
-<div th:replace="~{fragments/main :: show(${main})}"></div>
+<div th:replace="~{fragment/main :: show(${main})}"></div>
 <div th:insert="~{fragment/footer.html::footer}"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

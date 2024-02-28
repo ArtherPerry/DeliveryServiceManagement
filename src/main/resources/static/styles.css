@@ -4,13 +4,13 @@
     color: white; /* White text color */
     padding: 20px; /* Padding */
     position: absolute; /* Fixed position */
-    bottom: auto; /* Stick to the bottom */
+    bottom: 0; /* Stick to the bottom */
     width: 100%; /* Full width */
     text-align: center; /* Center-align content */
 }
 
 .footer p {
-    margin-bottom: auto; /* Remove default margin of <p> element */
+    margin-bottom: 0; /* Remove default margin of <p> element */
 }
 
 /* CSS for small screens (mobile devices) */
@@ -29,5 +29,10 @@
 
     .dropdown-item {
         padding-left: 20px; /* Increase padding for dropdown items */
+    }
+
+    .modal-dialog {
+        margin: 50px auto;
+        max-width: 90%; /* Adjust the maximum width for small screens */
     }
 }

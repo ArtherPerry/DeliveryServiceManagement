@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" th:replace="~{layout/adminLayout::layout(~{::main})}" xmlns:th="http://www.thymeleaf.org">
 
-</body>
+<main role="main">
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-3  ml-auto">
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <div class="input-group-append">
+                        <button class="btn btn-info">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Staff Table</h4>
+                    </div>
+                    <div class="card-body">
+                        <div th:replace="~{fragment/staffTable.html::staffTable}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 </html>
