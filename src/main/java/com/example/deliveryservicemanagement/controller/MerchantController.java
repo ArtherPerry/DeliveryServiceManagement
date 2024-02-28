@@ -31,7 +31,7 @@ public class MerchantController {
     @GetMapping("/findById")
     public String findMerchantById(@RequestParam("id")int id, Model model){
         model.addAttribute("merchant",merchantService.findMerchantById(id));
-        return "merchantDetail";
+        return "merchantDetails";
     }
 
     @GetMapping("/findAll")
@@ -58,6 +58,6 @@ public class MerchantController {
     @GetMapping("/findByName")
     public String findMerchantByName(@RequestParam("name")String name,Model model){
         model.addAttribute("merchantName",merchantService.findMerchantByName(name));
-        return "merchantDetail";
+        return "merchantDetails";
     }
 }

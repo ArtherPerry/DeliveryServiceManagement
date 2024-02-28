@@ -13,15 +13,17 @@
          <th>Township</th>
          <th>Address</th>
          <th>Phone Number</th>
+         <th>Action</th>
      </tr>
      </thead>
      <tbody>
-     <tr>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
+     <tr th:each="merchant : ${merchants}">
+         <td th:text="${merchant.id}"></td>
+         <td th:text="${merchant.merchantName}"></td>
+         <td th:text="${merchant.township}"></td>
+         <td th:text="${merchant.address}"></td>
+         <td th:text="${merchant.phoneNumber}"></td>
+         <td><a href="#"  th:href="@{/merchant/findById(id=${merchant.id})}" class="btn btn-info">View</a></td>
      </tr>
      </tbody>
  </table>

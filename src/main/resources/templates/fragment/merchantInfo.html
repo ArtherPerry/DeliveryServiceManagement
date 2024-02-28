@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="merchantInfo" class="container">
+    <div class="row">
+        <div class="col-4">
+            <img src="../../static/samplePhoto/SampleImage.png"th:src="@{/samplePhoto/SampleImage.png}" alt="#">
+        </div>
+        <div class="col-8">
+            <table class="table table-striped">
+                <tr th:each="merchant:${merchants}">
+                    <th>Merchant Id</th>
+                    <td th:text="${merchant.id}"></td>
+                </tr>
+                <tr>
+                    <th>Merchant Name</th>
+                    <td th:text="${merchant.merchantName}"></td>
+                </tr>
+                <tr>
+                    <th>Township</th>
+                    <td th:text="${merchant.township}"></td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td th:text="${merchant.address}"></td>
+                </tr>
+                <tr>
+                    <th>Phone Number</th>
+                    <td th:text="${merchant.phoneNumber}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
