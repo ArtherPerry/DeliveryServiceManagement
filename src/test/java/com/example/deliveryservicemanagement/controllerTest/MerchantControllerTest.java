@@ -45,7 +45,7 @@ public class MerchantControllerTest {
         Merchant merchant = new Merchant();
         when(merchantService.findMerchantById(id)).thenReturn(merchant);
         String viewName = merchantController.findMerchantById(id,model);
-        assertEquals("merchantDetail",viewName);
+        assertEquals("merchantDetails",viewName);
         verify(model,times(1)).addAttribute("merchant",merchant);
     }
 
@@ -81,7 +81,7 @@ public class MerchantControllerTest {
        Merchant merchant = new Merchant();
         when(merchantService.findMerchantByName(name)).thenReturn(merchant);
         String viewName = merchantController.findMerchantByName(name, model);
-        assertEquals("merchantDetail", viewName);
+        assertEquals("merchantDetails", viewName);
         verify(model, times(1)).addAttribute("merchantName", merchant);
     }
 }
