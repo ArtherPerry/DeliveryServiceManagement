@@ -32,7 +32,7 @@ public class StaffController {
     @GetMapping("/findById")
     public String findStaffById(@RequestParam("id") int id, Model model) {
         model.addAttribute("staff", staffService.findStaffById(id));
-        return "staffDetail";
+        return "staffDetails";
     }
 
     @GetMapping("/findAll")
@@ -59,6 +59,6 @@ public class StaffController {
     @GetMapping("findByName")
     public String findStaffByName(@RequestParam("name")String name,Model model){
         model.addAttribute("staffName",staffService.findStaffByName(name));
-        return "staffDetail";
+        return "staffDetails";
     }
 }

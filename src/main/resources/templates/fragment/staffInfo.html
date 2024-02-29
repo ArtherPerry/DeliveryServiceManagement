@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="staffInfo" class="container">
+    <div class="row">
+        <div class="col-4">
+            <img class="shadow" src="../../static/samplePhoto/SampleImage.png" alt="#"
+                 th:src="@{/samplePhoto/SampleImage.png}">
+        </div>
+        <div class="col-8">
+            <table class="table table-striped">
+                <tr>
+                    <th>Staff Id</th>
+                    <td th:text="${staff.id}"></td>
+                </tr>
+                <tr>
+                    <th>Staff Name</th>
+                    <td th:text="${staff.staffName}"></td>
+                </tr>
+                <tr>
+                    <th>Township</th>
+                    <td th:text="${staff.township}"></td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td th:text="${staff.address}"></td>
+                </tr>
+                <tr>
+                    <th>Phone Number</th>
+                    <td th:text="${staff.phoneNumber}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

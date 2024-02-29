@@ -4,27 +4,29 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body >
-    <table th:fragment="staffTable" class="table table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>township</th>
-            <th>Address</th>
-            <th>Phone Number</th>
-        </tr>
-        </thead>
+<body>
+<table th:fragment="staffTable" class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>township</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+        <th>Action</th>
+    </tr>
+    </thead>
 
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
+    <tbody>
+    <tr th:each="staff: ${staffs}">
+        <td th:text="${staff.id}"></td>
+        <td th:text="${staff.staffName}"></td>
+        <td th:text="${staff.township}"></td>
+        <td th:text="${staff.address}"></td>
+        <td th:text="${staff.phoneNumber}"></td>
+        <td><a href="#" th:href="@{/staff/findById(id=${staff.id})}" class="btn btn-info">View</a></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
