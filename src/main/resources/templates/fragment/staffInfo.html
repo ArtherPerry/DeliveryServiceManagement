@@ -33,6 +33,23 @@
                     <th>Phone Number</th>
                     <td th:text="${staff.phoneNumber}"></td>
                 </tr>
+                <tr>
+                    <th>Monthly Leaves</th>
+                    <td>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Year-Month</th>
+                                <th>Leaves Taken</th>
+                            </tr>
+                            <!-- Iterate over the staffMonthlyLeaves map -->
+                            <tr th:each="entry : ${staffMonthlyLeaves}">
+                                <!-- Access the key (YearMonth) and value (Integer) from the map entry -->
+                                <td th:text="${entry.key}"></td>
+                                <td th:text="${entry.value}"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>

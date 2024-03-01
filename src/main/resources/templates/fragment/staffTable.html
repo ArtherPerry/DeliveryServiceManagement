@@ -19,12 +19,15 @@
 
     <tbody>
     <tr th:each="staff: ${staffs}">
-        <td th:text="${staff.id}"></td>
-        <td th:text="${staff.staffName}"></td>
-        <td th:text="${staff.township}"></td>
-        <td th:text="${staff.address}"></td>
-        <td th:text="${staff.phoneNumber}"></td>
-        <td><a href="#" th:href="@{/staff/findById(id=${staff.id})}" class="btn btn-info">View</a></td>
+        <td th:text="${staff != null ? staff.id : ''}"></td>
+        <td th:text="${staff != null ? staff.staffName : ''}"></td>
+        <td th:text="${staff != null ? staff.township : ''}"></td>
+        <td th:text="${staff != null ? staff.address : ''}"></td>
+        <td th:text="${staff != null ? staff.phoneNumber : ''}"></td>
+        <td>
+            <a th:if="${staff != null}" th:href="@{'/staff/findById?id=' + ${staff.id}}" class="btn btn-info">View</a>
+            <a th:if="${staff != null}" th:href="@{'/staff/leaves?id=' + ${staff.id}}" class="btn btn-info">Leaves</a>
+        </td>
     </tr>
     </tbody>
 </table>

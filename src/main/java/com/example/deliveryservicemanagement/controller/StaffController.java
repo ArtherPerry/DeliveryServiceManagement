@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.YearMonth;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/staff")
 public class StaffController {
@@ -60,5 +63,33 @@ public class StaffController {
     public String findStaffByName(@RequestParam("name")String name,Model model){
         model.addAttribute("staffName",staffService.findStaffByName(name));
         return "staffDetails";
+    }
+
+    @GetMapping("/info/{id}") // Adjusted the mapping to avoid conflict
+    public String showStaffInfo(@PathVariable int id, Model model) {
+        // Retrieve staff information by id
+        Staff staff = staffService.findStaffById(id);
+
+        // Pass staff information to the Thymeleaf template
+        model.addAttribute("staff", staff);
+
+        // Return the name of the Thymeleaf template to render
+        return "staffInfo";
+    }
+
+    @GetMapping("/leaves") // New mapping to fetch monthly leaves separately
+    public String showMonthlyLeaves(@RequestParam("id") int id, Model model) {
+        // Retrieve staff information by id
+        Staff staff = staffService.findStaffById(id);
+
+        // Calculate monthly leaves for the staff member
+        Map<YearMonth, Integer> monthlyLeaves = staffService.calculateMonthlyLeaves(staff);
+
+        // Pass monthly leaves data to the Thymeleaf template
+        model.addAttribute("staffMonthlyLeaves", monthlyLeaves);
+
+        model.addAttribute("staff", staffService.findStaffById(id));
+        // Return the name of the Thymeleaf template to render
+        return "staffLeaveDetails";
     }
 }

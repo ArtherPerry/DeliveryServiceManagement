@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container" th:fragment="staffLeaveInfo">
+    <div class="row">
+        <div class="col-4">
+            <img class="shadow" src="../../static/samplePhoto/SampleImage.png" alt="#"
+                 th:src="@{/samplePhoto/SampleImage.png}">
+        </div>
+        <div class="col-8">
+
+            <table class="table table-striped">
+                <tr>
+                    <th>StaffName</th>
+                    <td th:text="${staff.staffName}"></td>
+                </tr>
+                <tr>
+                    <th>Year-Month</th>
+                    <th>Leaves Taken</th>
+                </tr>
+                <!-- Iterate over the staffMonthlyLeaves map -->
+                <tr th:each="entry : ${staffMonthlyLeaves}">
+                    <!-- Access the key (YearMonth) and value (Integer) from the map entry -->
+                    <td th:text="${entry.key}"></td>
+                    <td th:text="${entry.value}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
