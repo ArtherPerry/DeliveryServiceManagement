@@ -65,18 +65,6 @@ public class StaffController {
         return "staffDetails";
     }
 
-    @GetMapping("/info/{id}") // Adjusted the mapping to avoid conflict
-    public String showStaffInfo(@PathVariable int id, Model model) {
-        // Retrieve staff information by id
-        Staff staff = staffService.findStaffById(id);
-
-        // Pass staff information to the Thymeleaf template
-        model.addAttribute("staff", staff);
-
-        // Return the name of the Thymeleaf template to render
-        return "staffInfo";
-    }
-
     @GetMapping("/leaves") // New mapping to fetch monthly leaves separately
     public String showMonthlyLeaves(@RequestParam("id") int id, Model model) {
         // Retrieve staff information by id
