@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class StaffService {
@@ -62,5 +64,30 @@ public class StaffService {
         return monthlyLeaves;
     }
 
+    public void calculateTotalSalary(StaffSalary staffSalary){
+        int totalSalary =(staffSalary.getBasicSalary()+staffSalary.getBonus()+staffSalary.getTotalIncentive())-staffSalary.getDeductions();
+        staffSalary.setTotalSalary(totalSalary);
+    }
 
+    public void  calculateBonus(StaffSalary staffSalary,List<StaffLeave> leavesThisMonth){
+        if(leavesThisMonth.isEmpty()){
+           staffSalary.setBonus(1*staffSalary.getBonus());
+        }else {
+            staffSalary.setBonus(0);
+        }
+    }
+
+    public int calculateTotalIncentive(Staff staff) {
+        List<StaffSalary> staffSalaries = staff.getStaffSalaries();
+        int totalIncentive = 0;
+       YearMonth currentYearMonth = YearMonth.now();
+       for (StaffSalary staffSalary:staffSalaries){
+           LocalDate paymentDate = staffSalary.getPaymentDate();
+           YearMonth salaryYearMonth = YearMonth.from(paymentDate);
+           if(salaryYearMonth.equals(currentYearMonth)){
+               totalIncentive+= staffSalary.getTotalIncentive();
+           }
+       }
+        return totalIncentive;
+    }
 }

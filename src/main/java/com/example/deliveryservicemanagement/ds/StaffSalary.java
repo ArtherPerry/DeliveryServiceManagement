@@ -29,6 +29,7 @@ public class StaffSalary {
 
     @Min(value = 0, message = "Bonus must be a positive value")
     private int bonus;
+
     @Min(value = 0, message = "Total Orders Delivered must be a positive value")
     private int totalOrdersDelivered;
 
@@ -51,17 +52,5 @@ public class StaffSalary {
     @ManyToOne
     @JoinColumn(name = "staff_id",nullable = false)
     private Staff staff;
-
-    public void  calculateBonus(List<StaffLeave> leavesThisMonth){
-        if(leavesThisMonth.isEmpty()){
-            this.bonus = 1*bonus;
-        }else {
-            this.bonus=0;
-        }
-    }
-    public void calculateInventive(int ordersDelivered){
-        this.totalOrdersDelivered +=ordersDelivered;
-        this.totalIncentive +=ordersDelivered*incentiveRate;
-    }
 
 }

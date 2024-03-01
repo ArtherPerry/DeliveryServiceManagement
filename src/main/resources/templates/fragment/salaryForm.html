@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container" th:fragment="salaryForm">
+    <form action="#"  method="post">
+        <div class="form-group">
+            <label>Select Staff Name</label>
+            <select class="form-control">
+                <option th:each="staff: ${staffs}"
+                    th:value="${staff.id}" th:text="${staff.staffName}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Basic Salary</label>
+            <input type="number" step="any" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Bonus</label>
+            <input type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Incentive Rate</label>
+            <input type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Deductions</label>
+            <input type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Payment Date</label>
+            <input type="date" class="form-control" >
+        </div>
+        <div class="form-group">
+            <label>Select Payment Method</label>
+            <select class="form-control" >
+                <option>Cash</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-warning btn-block">Calculate Salary</button>
+    </form>
+</div>
+</body>
+</html>

@@ -59,7 +59,7 @@ public class StaffController {
         return "redirect:/staff/findAll";
     }
 
-    @GetMapping("findByName")
+    @GetMapping("/findByName")
     public String findStaffByName(@RequestParam("name")String name,Model model){
         model.addAttribute("staffName",staffService.findStaffByName(name));
         return "staffDetails";
@@ -79,5 +79,11 @@ public class StaffController {
         model.addAttribute("staff", staffService.findStaffById(id));
         // Return the name of the Thymeleaf template to render
         return "staffLeaveDetails";
+    }
+
+    @GetMapping("/salaryForm")
+    public String showSalaryForm(Model model){
+        model.addAttribute("staffs",staffService.findAllStaff());
+        return "calculateSalary";
     }
 }

@@ -47,6 +47,7 @@ var deliverData = {
     }]
 };
 
+
 // Create pickup chart
 document.addEventListener('DOMContentLoaded', function() {
     var pickupChartCanvas = document.getElementById("pickupChart");
@@ -77,6 +78,38 @@ document.addEventListener('DOMContentLoaded', function() {
     var deliverChart = new Chart(deliverChartCanvas, {
         type: 'pie',
         data: deliverData,
+        options: {
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var dataset = data.datasets[tooltipItem.datasetIndex];
+                        var currentValue = dataset.data[tooltipItem.index];
+                        var total = dataset.data.reduce(function(previousValue, currentValue) {
+                            return previousValue + currentValue;
+                        });
+                        var percentage = Math.round((currentValue / total) * 100);
+                        return data.labels[tooltipItem.index] + ': ' + currentValue + ' (' + percentage + '%)';
+                    }
+                }
+            }
+        }
+    });
+});
+// Example data for income chart
+var incomeData = {
+    labels: ["Income YGN", "Income MDY"],
+    datasets: [{
+        data: [70, 30], // Example data values
+        backgroundColor: ["#FFCE56", "#FF6384"]
+    }]
+};
+
+// Create income chart
+document.addEventListener('DOMContentLoaded', function() {
+    var incomeChartCanvas = document.getElementById("incomeChart");
+    var incomeChart = new Chart(incomeChartCanvas, {
+        type: 'pie',
+        data: incomeData,
         options: {
             tooltips: {
                 callbacks: {

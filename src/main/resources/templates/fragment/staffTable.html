@@ -13,6 +13,7 @@
         <th>township</th>
         <th>Address</th>
         <th>Phone Number</th>
+        <th>Role</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -24,6 +25,7 @@
         <td th:text="${staff != null ? staff.township : ''}"></td>
         <td th:text="${staff != null ? staff.address : ''}"></td>
         <td th:text="${staff != null ? staff.phoneNumber : ''}"></td>
+        <td th:text="${staff != numm ? staff.role:''}"></td>
         <td>
             <a th:if="${staff != null}" th:href="@{'/staff/findById?id=' + ${staff.id}}" class="btn btn-info">View</a>
             <a th:if="${staff != null}" th:href="@{'/staff/leaves?id=' + ${staff.id}}" class="btn btn-info">Leaves</a>
