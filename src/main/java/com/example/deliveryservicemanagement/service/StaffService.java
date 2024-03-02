@@ -8,6 +8,7 @@ import com.example.deliveryservicemanagement.ds.StaffSalary;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.time.LocalDate;
@@ -62,6 +63,13 @@ public class StaffService {
         }
 
         return monthlyLeaves;
+    }
+
+    @Transactional
+    public void saveLeaveForStaff(StaffLeave staffLeave,int staffId) {
+        Staff staff = staffDao.findById(staffId).orElseThrow(EntityNotFoundException::new);
+        staff.addLeave(staffLeave);
+        staffLeaveDao.save(staffLeave);
     }
 
     public void calculateTotalSalary(StaffSalary staffSalary){

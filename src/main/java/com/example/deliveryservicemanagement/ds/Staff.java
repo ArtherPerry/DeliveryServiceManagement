@@ -62,4 +62,9 @@ public class Staff {
 
     @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL)
     private List<StaffSalary> staffSalaries = new ArrayList<>();
+
+    public void addLeave(StaffLeave staffLeave){
+        staffLeave.setStaff(this);
+        staffLeaves.add(staffLeave);
+    }
 }

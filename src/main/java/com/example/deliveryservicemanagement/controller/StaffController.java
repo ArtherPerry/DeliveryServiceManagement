@@ -1,6 +1,7 @@
 package com.example.deliveryservicemanagement.controller;
 
 import com.example.deliveryservicemanagement.ds.Staff;
+import com.example.deliveryservicemanagement.ds.StaffLeave;
 import com.example.deliveryservicemanagement.service.StaffService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.YearMonth;
 import java.util.Map;
 
@@ -86,4 +88,21 @@ public class StaffController {
         model.addAttribute("staffs",staffService.findAllStaff());
         return "calculateSalary";
     }
+
+    @GetMapping("/leaveForm")
+    public String showLeaveForm(Model model){
+        model.addAttribute("staffs",staffService.findAllStaff());
+        model.addAttribute("staffLeave",new StaffLeave());
+        return "setLeave";
+    }
+
+    @PostMapping("/saveLeave")
+    public String saveStaffLeave(@Valid @ModelAttribute("staffLeave") StaffLeave staffLeave, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "setLeave";
+        }
+        staffService.saveLeaveForStaff(staffLeave, staffLeave.getStaff().getId());
+        return "redirect:/staff/findAll"; // Redirect after successful save
+    }
+
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="container" th:fragment="leaveForm">
+  <form action="#" th:action="@{/staff/saveLeave}" th:object="${staffLeave}" method="post">
+    <div class="form-group">
+      <label>Select Staff Name</label>
+      <select class="form-control" th:field="*{staff}">
+        <option th:each="staff: ${staffs}" th:value="${staff.id}" th:text="${staff.staffName}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Start Date</label>
+      <input type="date" step="any" class="form-control" th:field="*{startDate}">
+    </div>
+    <div class="form-group">
+      <label>End Date</label>
+      <input type="date" class="form-control" th:field="*{endDate}">
+    </div>
+    <div class="form-group">
+      <label>Leave Type</label>
+      <select class="form-control" th:field="*{leaveType}">
+        <option value="CASUAL">Casual</option>
+        <option value="ANNUAL">Annual</option>
+        <option value="SICK">Sick</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Leave Reason</label>
+      <input type="text" class="form-control" th:field="*{reason}">
+    </div>
+    <div class="form-group">
+      <label>Status</label>
+      <select class="form-control" th:field="*{status}">
+        <option value="APPROVED">APPROVED</option>
+        <option value="PENDING">PENDING</option>
+        <option value="REJECTED">REJECTED</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-warning btn-block">Save</button>
+  </form>
+</div>
+</body>
+</html>

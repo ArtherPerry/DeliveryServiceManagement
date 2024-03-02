@@ -33,4 +33,5 @@ public class StaffLeave {
     @JoinColumn(name = "staff_id",nullable = false)
     private Staff staff;
 
+
 }
