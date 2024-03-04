@@ -11,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Getter
@@ -21,6 +20,8 @@ import java.util.List;
 public class StaffSalary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @Min(value = 0, message = "Basic salary must be a positive value")
     private int basicSalary;
 
@@ -44,6 +45,7 @@ public class StaffSalary {
 
     @NotNull(message = "Inventive Rate is Required")
     private int incentiveRate;
+
     @Pattern(regexp = "PAID|PENDING", message = "Payment status must be one of PAID or PENDING")
     private String paymentStatus;
 

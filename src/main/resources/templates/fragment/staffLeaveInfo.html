@@ -12,22 +12,27 @@
                  th:src="@{/samplePhoto/SampleImage.png}">
         </div>
         <div class="col-8">
-
+            <label class="text-dark">Staff Name: </label>
+            <a th:text="${staff.staffName}"></a>
             <table class="table table-striped">
+                <thead>
                 <tr>
-                    <th>StaffName</th>
-                    <td th:text="${staff.staffName}"></td>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Leave Type</th>
+                    <th>Reason</th>
+                    <th>Status</th>
                 </tr>
-                <tr>
-                    <th>Year-Month</th>
-                    <th>Leaves Taken</th>
+                </thead>
+                <tbody>
+                <tr th:each="leave: ${leaveDetails}">
+                    <td th:text="${leave.startDate}"></td>
+                    <td th:text="${leave.endDate}"></td>
+                    <td th:text="${leave.leaveType}"></td>
+                    <td th:text="${leave.reason}"></td>
+                    <td th:text="${leave.status}"></td>
                 </tr>
-                <!-- Iterate over the staffMonthlyLeaves map -->
-                <tr th:each="entry : ${staffMonthlyLeaves}">
-                    <!-- Access the key (YearMonth) and value (Integer) from the map entry -->
-                    <td th:text="${entry.key}"></td>
-                    <td th:text="${entry.value}"></td>
-                </tr>
+                </tbody>
             </table>
         </div>
     </div>

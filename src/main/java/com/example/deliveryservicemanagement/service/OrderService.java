@@ -47,5 +47,13 @@ public class OrderService {
         return YearMonth.from(date1).equals(YearMonth.from(date2));
     }
 
+    public void resetSuccessfulDeliveriesForMonth(Staff staff) {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate lastDeliveryDate = staff.getLastSuccessfulDeliveryDate();
+        if (lastDeliveryDate != null && !isSameMonth(currentDate, lastDeliveryDate)) {
+            // If it's a new month, reset the successfulDeliveries count
+            staff.setSuccessfulDeliveries(0);
+        }
+    }
 
 }

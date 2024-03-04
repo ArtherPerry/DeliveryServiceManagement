@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container" th:fragment="salaryForm">
-    <form action="#"  method="post">
+    <form action="#" th:action="@{/staff/calcSalary}" th:object="${staffSalary}"  method="post">
         <div class="form-group">
             <label>Select Staff Name</label>
             <select class="form-control">
@@ -16,28 +16,35 @@
         </div>
         <div class="form-group">
             <label>Basic Salary</label>
-            <input type="number" step="any" class="form-control">
+            <input type="number" step="any" class="form-control" th:field="*{basicSalary}">
         </div>
         <div class="form-group">
             <label>Bonus</label>
-            <input type="number" class="form-control">
+            <input type="number" class="form-control" th:field="*{bonus}">
         </div>
         <div class="form-group">
             <label>Incentive Rate</label>
-            <input type="number" class="form-control">
+            <input type="number" class="form-control" th:field="*{incentiveRate}">
         </div>
         <div class="form-group">
             <label>Deductions</label>
-            <input type="number" class="form-control">
+            <input type="number" class="form-control" th:field="*{deductions}">
         </div>
         <div class="form-group">
             <label>Payment Date</label>
-            <input type="date" class="form-control" >
+            <input type="date" class="form-control" th:field="*{paymentDate}">
         </div>
         <div class="form-group">
             <label>Select Payment Method</label>
-            <select class="form-control" >
-                <option>Cash</option>
+            <select class="form-control" th:field="*{paymentMethod}">
+                <option value="CASH">Cash</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Select Payment Method</label>
+            <select class="form-control" th:field="*{paymentStatus}">
+                <option value="PAID">Paid</option>
+                <option value="PENDING">Pending</option>
             </select>
         </div>
         <button type="submit" class="btn btn-warning btn-block">Calculate Salary</button>

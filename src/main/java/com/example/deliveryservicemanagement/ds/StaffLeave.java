@@ -32,6 +32,11 @@ public class StaffLeave {
     @ManyToOne
     @JoinColumn(name = "staff_id",nullable = false)
     private Staff staff;
+    @Transient
+    private int leaveMonth;
+
+    @Transient
+    private int leaveYear;
 
 
 }

@@ -2,6 +2,7 @@ package com.example.deliveryservicemanagement.controller;
 
 import com.example.deliveryservicemanagement.ds.Staff;
 import com.example.deliveryservicemanagement.ds.StaffLeave;
+import com.example.deliveryservicemanagement.ds.StaffSalary;
 import com.example.deliveryservicemanagement.service.StaffService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class StaffController {
     @GetMapping("/findById")
     public String findStaffById(@RequestParam("id") int id, Model model) {
         model.addAttribute("staff", staffService.findStaffById(id));
+
+        // Calculate monthly leaves for the staff member
+        Map<YearMonth, Integer> monthlyLeaves = staffService.calculateMonthlyLeaves(staffService.findStaffById(id));
+
+        // Pass monthly leaves data to the Thymeleaf template
+        model.addAttribute("staffMonthlyLeaves", monthlyLeaves);
         return "staffDetails";
     }
 
@@ -67,25 +74,33 @@ public class StaffController {
         return "staffDetails";
     }
 
-    @GetMapping("/leaves") // New mapping to fetch monthly leaves separately
-    public String showMonthlyLeaves(@RequestParam("id") int id, Model model) {
-        // Retrieve staff information by id
-        Staff staff = staffService.findStaffById(id);
+//    @GetMapping("/leaves") // New mapping to fetch monthly leaves separately
+//    public String showMonthlyLeaves(@RequestParam("id") int id, Model model) {
+//        // Retrieve staff information by id
+//        Staff staff = staffService.findStaffById(id);
+//
+//        // Calculate monthly leaves for the staff member
+//        Map<YearMonth, Integer> monthlyLeaves = staffService.calculateMonthlyLeaves(staff);
+//
+//        // Pass monthly leaves data to the Thymeleaf template
+//        model.addAttribute("staffMonthlyLeaves", monthlyLeaves);
+//
+//        model.addAttribute("staff", staffService.findStaffById(id));
+//        // Return the name of the Thymeleaf template to render
+//        return "staffLeaveDetails";
+//    }
 
-        // Calculate monthly leaves for the staff member
-        Map<YearMonth, Integer> monthlyLeaves = staffService.calculateMonthlyLeaves(staff);
-
-        // Pass monthly leaves data to the Thymeleaf template
-        model.addAttribute("staffMonthlyLeaves", monthlyLeaves);
-
-        model.addAttribute("staff", staffService.findStaffById(id));
-        // Return the name of the Thymeleaf template to render
+    @GetMapping("/leaveDetails")
+    public String showLeaveDetails(@RequestParam("id")int id, Model model){
+        model.addAttribute("staff",staffService.findStaffById(id));
+       model.addAttribute("leaveDetails",staffService.showStaffLeaveDetails(id));
         return "staffLeaveDetails";
     }
 
     @GetMapping("/salaryForm")
     public String showSalaryForm(Model model){
         model.addAttribute("staffs",staffService.findAllStaff());
+        model.addAttribute("staffSalary",new StaffSalary());
         return "calculateSalary";
     }
 
@@ -102,7 +117,17 @@ public class StaffController {
             return "setLeave";
         }
         staffService.saveLeaveForStaff(staffLeave, staffLeave.getStaff().getId());
-        return "redirect:/staff/findAll"; // Redirect after successful save
+        return "redirect:/staff/leavesDetails?id=" + staffLeave.getStaff().getId(); // Redirect after successful save
+    }
+
+
+    @PostMapping("/clacSalary")
+    public String calculateSalary(@ModelAttribute("staffSalary") StaffSalary staffSalary,BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "calculateSalary";
+        }
+        staffService.calculateTotalSalary(staffSalary);
+        return "redirect:/staff/findAll";
     }
 
 }
